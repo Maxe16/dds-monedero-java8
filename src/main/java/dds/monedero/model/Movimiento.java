@@ -43,16 +43,4 @@ public class Movimiento {
     return !esDeposito;
   }
 
-public void agregateA(Cuenta cuenta) { // Inappropiate Intimacy
-    cuenta.setSaldo(calcularValor(cuenta));
-    cuenta.agregarMovimiento(fecha, monto, esDeposito);
-  }
-
-   public double calcularValor(Cuenta cuenta) { // Inappropriate Intimacy
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
-  }
 }
