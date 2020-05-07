@@ -26,15 +26,19 @@ public class Cuenta {
     this.movimientos = movimientos;
   }
 
-  public void poner(double cuanto) {
+  public void poner(double cuanto) {     //Previamente era Long Method
     validarMontoPositivo(cuanto);
 
-    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
-      throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
-    }
+    validarCantidadDeDepositos();
 
     new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
   }
+
+private void validarCantidadDeDepositos() {
+	if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
+      throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
+    }
+}
 
 private void validarMontoPositivo(double cuanto) {
 	if (cuanto <= 0) {
